@@ -24,6 +24,8 @@
 	
 	console.log(trials);
 
+	var trial_list = trials_2;
+
 
   var timeline = [];
   
@@ -37,9 +39,9 @@
 	
 	structured_sequence_loc = jsPsych.randomization.shuffle(["left","right"])[0];
 	
-	for (seq_num = 0; seq_num < trials.length; seq_num++) {
+	for (seq_num = 0; seq_num < trial_list.length; seq_num++) {
 		
-		cur_data = trials[seq_num];
+		cur_data = trial_list[seq_num];
 		console.log(cur_data);
 		
 		if (structured_sequence_loc=="left") {
