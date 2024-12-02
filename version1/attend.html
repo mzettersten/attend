@@ -5,19 +5,15 @@
     <script src="jspsych-6.1.0/jspsych.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-image-button-response.js"></script>
 	<script src="jspsych-attend.js"></script>
+	<!-- <script src="papaparse.min.js"></script> -->
 	<script src="jspsych-attend-trigger.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+	<script src="trials.js"></script>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script> -->
     <link rel="stylesheet" href="jspsych-6.1.0/css/jspsych.css"></link>
 	<link rel="stylesheet" href="attend.css"></link>
   </head>
   <body></body>
   <script>
-
-var publicSpreadsheetUrl = "https://docs.google.com/spreadsheets/d/1MPiLmAP7Br9kxtfJjUfyII7s26QNM8bmsHbPJfe5vQo/edit?usp=sharing"
-
-var tabletop = Tabletop.init( { key: publicSpreadsheetUrl,
-                   callback: startExperiment,
-                   simpleSheet: true } )
 	
 	
 	var images = ["stims/elephant.png","stims/cow.png","stims/tiger.png" ,"stims/turtle.png","stims/walrus.png" ,"stims/polarbear.png"];
@@ -26,6 +22,7 @@ var tabletop = Tabletop.init( { key: publicSpreadsheetUrl,
 	var structured_images = shuffledImages.slice(0,3);
 	var random_images = shuffledImages.slice(3,);
 	
+	console.log(trials);
 
 
   var timeline = [];
@@ -37,19 +34,12 @@ var tabletop = Tabletop.init( { key: publicSpreadsheetUrl,
     prompt: "",
 	  data: {trial_type: "trigger"}
   });
-  
-  
-  
-  function createTrials(data, tabletop) {
-
-    //data = data["Sheet1"]['elements']
-    console.log(data);
 	
 	structured_sequence_loc = jsPsych.randomization.shuffle(["left","right"])[0];
 	
-	for (seq_num = 0; seq_num < data.length; seq_num++) {
+	for (seq_num = 0; seq_num < trials.length; seq_num++) {
 		
-		cur_data = data[seq_num];
+		cur_data = trials[seq_num];
 		console.log(cur_data);
 		
 		if (structured_sequence_loc=="left") {
@@ -82,20 +72,11 @@ var tabletop = Tabletop.init( { key: publicSpreadsheetUrl,
     data: {trial_type: "target", target_image: "stims/penguin.png", target_location: "left", structured_sequence_loc: structured_sequence_loc}
   });
 
-};
-
-
-
-
-function startExperiment(data, tabletop) {
-	createTrials(data,tabletop);
-
   jsPsych.init({
     timeline: timeline,
 	  default_iti: 0,
     on_finish: function(){jsPsych.data.displayData();}
   });
-};
 
   </script>
 </html>
