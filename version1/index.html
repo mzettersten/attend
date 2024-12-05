@@ -53,7 +53,7 @@
 	    timeline.push({
 	      type: 'attend',
 	      stimuli: cur_stims,
-	  	trial_duration: 850,
+	  	trial_duration: 1250,
 	  	response_ends_trial: false,
 	      prompt: "",
 	  	  data: {trial_type: "sequence",structured_sequence_loc: structured_sequence_loc}
@@ -71,7 +71,7 @@
   response_ends_trial: true,
 	  response_contingent_color: true,
     prompt: "",
-    data: {trial_type: "target", target_image: "stims/penguin.png", target_location: "right", structured_sequence_loc: structured_sequence_loc}
+    data: {trial_type: "target", target_image: "stims/penguin.png", target_location: "left", structured_sequence_loc: structured_sequence_loc}
   });
 
   jsPsych.init({
